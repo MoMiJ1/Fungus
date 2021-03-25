@@ -180,7 +180,6 @@ class TSP:
         plt.title("iteration - score", color='r')
         plt.xlabel("iteration")
         plt.ylabel("score ×10^3")
-        plt.legend()
         plt.show()
 
 
