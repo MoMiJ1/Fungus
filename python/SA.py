@@ -103,10 +103,10 @@ class SA:
             # 4. 降温
             self.T *= self.lamda
         print(f"最优解：{self.Optimal.res}:{-round(self.Optimal.score, 4)}")
-        self.view(g_scores, l_scores)
+        self.display(g_scores, l_scores)
 
     # 结果可视化
-    def view(self, res1, res2):
+    def display(self, res1, res2):
         fig, ax = plt.subplots(1, 2, figsize=(10, 4))
         ax[0].plot(res1, color='lightcoral')
         ax[0].set_title("Global Optimal", color='r')
