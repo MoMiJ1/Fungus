@@ -186,4 +186,3 @@ class TSP:
 if __name__ == "__main__":
     tsp = TSP(100)
     tsp.run(500)
-
