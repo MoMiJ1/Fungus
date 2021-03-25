@@ -80,7 +80,3 @@ if __name__ == "__main__":
     ga = GA_extremum(M_Size=40, T=50, Pm=0.05, Pc=0.5, bound_min=0, bound_max=1)
     res = ga.run()
     print("最优解为：x={}\n极值：{}".format(res[0],res[1]))
-
-
-
-
