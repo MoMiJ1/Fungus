@@ -172,10 +172,10 @@ class TSP:
             print(f'{self.ga.t} : {round(dist,5)}')
             res.append(dist)
             n += 1
-        self.view(res, T)
+        self.display(res, T)
 
     # 结果可视化
-    def view(self, res, T):
+    def display(self, res, T):
         plt.plot(range(T),res, color='lightcoral')
         plt.title("iteration - score", color='r')
         plt.xlabel("iteration")
