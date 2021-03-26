@@ -123,3 +123,5 @@ class SA:
 if __name__ == "__main__":
     sa = SA(lambda p: -(5 * np.cos(p.res[0] * p.res[1]) + p.res[0] * p.res[1] + pow(p.res[1], 3)))
     sa.cooling()
+
+    
