@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// LeetCode 263.丑数
+
 class Solution {
 public:
     bool isUgly(int n) {
