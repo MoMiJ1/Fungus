@@ -6,18 +6,18 @@
 #include <algorithm>
 #define MAX 1000
 //**************************************** paramster
-struct USER   // ¶¨ÒåÓÃ»§½á¹¹Ìå
+struct USER   // å®šä¹‰ç”¨æˆ·ç»“æ„ä½“
 {
-	char id[7];  // ÓÃ»§±àºÅ
-	char card[5]; // ¿¨ÀàĞÍ
-	long valid;  //ÓĞĞ§ÆÚ/´ÎÊı
-	char carid1[7]; //³µÅÆºÅ1
-	char carid2[7]; //³µÅÆºÅ2
-	char car1in[13]; //³µ1Èë³¡Ê±¼ä
-	char car2in[13]; //³µ2Èë³¡Ê±¼ä
+	char id[7];  // ç”¨æˆ·ç¼–å·
+	char card[5]; // å¡ç±»å‹
+	long valid;  //æœ‰æ•ˆæœŸ/æ¬¡æ•°
+	char carid1[7]; //è½¦ç‰Œå·1
+	char carid2[7]; //è½¦ç‰Œå·2
+	char car1in[13]; //è½¦1å…¥åœºæ—¶é—´
+	char car2in[13]; //è½¦2å…¥åœºæ—¶é—´
 }user[MAX];
 
-//¶¨ÒåÔÂ·İÊı×é£¬ÓÃÓÚ¼ÆËãÌìÊı
+//å®šä¹‰æœˆä»½æ•°ç»„ï¼Œç”¨äºè®¡ç®—å¤©æ•°
 int month[13][2]={{0,0},{31,31},{28,29},{31,31},{30,30},{31,31},{30,30},{31,31},{31,31},{30,30},{31,31},{30,30},{31,31}};
 //**************************************** function
 void showmenu();
@@ -34,10 +34,10 @@ int main()
 {
 	int select,flag,e;
 	showmenu();
-	printf("ÇëÊäÈëÄúÒª½øĞĞµÄ²Ù×÷£º");
+	printf("è¯·è¾“å…¥æ‚¨è¦è¿›è¡Œçš„æ“ä½œï¼š");
 	scanf("%d",&select);
 	printf("\n");                          
-	do										//Ö¸ÁîÑ¡Ôñ
+	do										//æŒ‡ä»¤é€‰æ‹©
 	{
 		if(select>=1&&select<=8)
 		{
@@ -50,12 +50,12 @@ int main()
 			printf("input error.choose again.\n");
 		}
 	}while(!flag);
-	while(flag)                             //Ö¸ÁîÖ´ĞĞ
+	while(flag)                             //æŒ‡ä»¤æ‰§è¡Œ
 	{ 
 		switch(select)
 		{
 		case 1:
-			printf("´´½¨¼ÇÂ¼»áµ¼ÖÂÔ­ÓĞ¼ÇÂ¼È«²¿Çå¿Õ£¬È·¶¨¼ÌĞø²Ù×÷Âğ(1/0)£¿");
+			printf("åˆ›å»ºè®°å½•ä¼šå¯¼è‡´åŸæœ‰è®°å½•å…¨éƒ¨æ¸…ç©ºï¼Œç¡®å®šç»§ç»­æ“ä½œå—(1/0)ï¼Ÿ");
 			scanf("%d",&e);
 			if(e==1){
 				creat();
@@ -82,47 +82,47 @@ int main()
 			sort();
 			break;
 		case 8:
-			exit(0);                        //exit(0):³ÌĞòÕı³£ÔËĞĞ²¢ÍË³ö                     
+			exit(0);                        //exit(0):ç¨‹åºæ­£å¸¸è¿è¡Œå¹¶é€€å‡º                     
 			break;
 		default:break;
 		};
 		printf("\n");
-		printf("ÊÇ·ñ¼ÌĞø²Ù×÷?(1/0):");
+		printf("æ˜¯å¦ç»§ç»­æ“ä½œ?(1/0):");
 		scanf("%d",&e);
 		if(e==1)
 		{
 			flag=1;
 			system("cls");
 			showmenu();
-			printf("ÇëÊäÈëÄúÒª½øĞĞµÄ²Ù×÷£º ");
+			printf("è¯·è¾“å…¥æ‚¨è¦è¿›è¡Œçš„æ“ä½œï¼š ");
 			scanf("%d",&select);
 			printf("\n");
 		}
 		else
 			flag=0;
 	};
-	printf("*****¸ĞĞ»ÄúµÄÊ¹ÓÃ¡£*****\n");
+	printf("*****æ„Ÿè°¢æ‚¨çš„ä½¿ç”¨ã€‚*****\n");
 	printf("\n");
 	return 0;
 };
 //**************************************** functions 
 
-void showmenu()           //Ö¸Áî²Ëµ¥
+void showmenu()           //æŒ‡ä»¤èœå•
 {
-	printf( "====== Ğ£Ô°³µÁ¾¹ÜÀíÏµÍ³ ======\n" );
-	printf("======\t1¡¢´´½¨¼ÇÂ¼\t======\n");
-	printf("======\t2¡¢Ìí¼Ó¼ÇÂ¼\t======\n");
-	printf("======\t3¡¢ä¯ÀÀ¼ÇÂ¼\t======\n");
-	printf ("======\t4¡¢³µÁ¾½øÈë\t======\n");
-	printf ("======\t5¡¢³µÁ¾Àë¿ª\t======\n");
-	printf("======\t6¡¢ĞŞ¸Ä¼ÇÂ¼\t======\n");
-	printf ("======\t7¡¢ÅÅĞòÏÔÊ¾\t======\n");
-	printf ("======\t8¡¢Àë¿ªÏµÍ³\t======\n");
+	printf( "====== æ ¡å›­è½¦è¾†ç®¡ç†ç³»ç»Ÿ ======\n" );
+	printf("======\t1ã€åˆ›å»ºè®°å½•\t======\n");
+	printf("======\t2ã€æ·»åŠ è®°å½•\t======\n");
+	printf("======\t3ã€æµè§ˆè®°å½•\t======\n");
+	printf ("======\t4ã€è½¦è¾†è¿›å…¥\t======\n");
+	printf ("======\t5ã€è½¦è¾†ç¦»å¼€\t======\n");
+	printf("======\t6ã€ä¿®æ”¹è®°å½•\t======\n");
+	printf ("======\t7ã€æ’åºæ˜¾ç¤º\t======\n");
+	printf ("======\t8ã€ç¦»å¼€ç³»ç»Ÿ\t======\n");
 	printf ("==============================\n") ;
-	printf("ÈçÒªÍË³öÏµÍ³£¬Çë±£´æĞÅÏ¢£¡\n");
+	printf("å¦‚è¦é€€å‡ºç³»ç»Ÿï¼Œè¯·ä¿å­˜ä¿¡æ¯ï¼\n");
 };
 
-void save(int m){          //±£´æĞÅÏ¢
+void save(int m){          //ä¿å­˜ä¿¡æ¯
 	int i;
 	FILE* fp;
 	if((fp=fopen("car.txt","wb"))==NULL)
@@ -136,7 +136,7 @@ void save(int m){          //±£´æĞÅÏ¢
 	fclose(fp);	
 }
 
-int load(){                //ÔØÈëĞÅÏ¢
+int load(){                //è½½å…¥ä¿¡æ¯
 	FILE* fp;
 	int i=0;
 	if((fp=fopen("car.txt","rb"))==NULL)
@@ -157,80 +157,80 @@ int load(){                //ÔØÈëĞÅÏ¢
 	return(i-1);
 };
 
-bool isFull(){ // ÅĞ¶ÏÊÇ·ñÒÑÂú
+bool isFull(){ // åˆ¤æ–­æ˜¯å¦å·²æ»¡
     int m = load();
     if (m == MAX) {return true;}
     return false;
 }
 
-void display(){            //Õ¹Ê¾ĞÅÏ¢
+void display(){            //å±•ç¤ºä¿¡æ¯
 	int i;
 	int m=load();
 	for(i=0;i<m;i++)
 		printf("\t%s\t,\t%s\t,\t%d\t,\t%s\t,\t%s\t,\t%s\t,\t%s\t\n",user[i].id,user[i].card,user[i].valid,user[i].carid1,user[i].carid2,user[i].car1in,user[i].car2in);
 };			
 
-void creat()               //´´½¨ĞÂĞÅÏ¢Êı¾İ
+void creat()               //åˆ›å»ºæ–°ä¿¡æ¯æ•°æ®
 {
 	int i,j,m,flag,k;
 	char uid[7],cid1[7],cid2[7],today[7],va[7],tcard[5];
 	long time,v;
-	do										//ÅĞ¶ÏÊäÈëÊÇ·ñ·ûºÏÒªÇó£ºÎ»Êı£¬Êı×Ö
+	do										//åˆ¤æ–­è¾“å…¥æ˜¯å¦ç¬¦åˆè¦æ±‚ï¼šä½æ•°ï¼Œæ•°å­—
 	{
 		flag=1;
-		printf("ÇëÊäÈë½ñÈÕÈÕÆÚ(Àı190212): ");
+		printf("è¯·è¾“å…¥ä»Šæ—¥æ—¥æœŸ(ä¾‹190212): ");
 		scanf("%s",&today);
 		if(strlen(today)!=6)
 			flag=0;
 		for(k=0;today[k]!='\0' && flag;k++)
-			if(isdigit(today[k])==0)           // ÅĞ¶ÏÈÕÆÚ¸ñÊ½ÊÇ·ñÎªÊı×Ö£ºisdigit
+			if(isdigit(today[k])==0)           // åˆ¤æ–­æ—¥æœŸæ ¼å¼æ˜¯å¦ä¸ºæ•°å­—ï¼šisdigit
 				flag=0;
 	}while(!flag);
-	time=atol(today);                      //½«Ê±¼ä×ª»¯ÎªÊı×ÖĞÎÊ½:atol
+	time=atol(today);                      //å°†æ—¶é—´è½¬åŒ–ä¸ºæ•°å­—å½¢å¼:atol
 
 	do 
 	{
-       printf("ÊäÈë´´½¨ÓÃ»§Êı(1000ÒÔÄÚ)£º");
+       printf("è¾“å…¥åˆ›å»ºç”¨æˆ·æ•°(1000ä»¥å†…)ï¼š");
        scanf("%d", &m);
     }while(m>1000);
 
 	for(i=0;i<m;i++)
 	{
-		do                                 //Â¼ÈëÓÃ»§id
+		do                                 //å½•å…¥ç”¨æˆ·id
 		{
 			flag=1;
-			do                             //ÅĞ¶ÏÓÃ»§idÊÇ·ñºÏÀí
+			do                             //åˆ¤æ–­ç”¨æˆ·idæ˜¯å¦åˆç†
 			{
 				flag=1;
-				printf("ÇëÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄ6Î»ÓÃ»§ID£º");
+				printf("è¯·è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„6ä½ç”¨æˆ·IDï¼š");
 				scanf("%s",&uid);
 				if(strlen(uid)!=6)
 					flag=0;
 				for(k=0;uid[k]!='\0' && flag;k++)
-					if(isalnum(uid[k])==0)     //ÅĞ¶ÏÓÃ»§idÊÇ·ñÎª×ÖÄ¸ÓëÊı×Ö£ºisalnum
+					if(isalnum(uid[k])==0)     //åˆ¤æ–­ç”¨æˆ·idæ˜¯å¦ä¸ºå­—æ¯ä¸æ•°å­—ï¼šisalnum
 						flag=0;
 			}while(!flag);
-			for(j=0;j<i && flag;j++)       //ÓÃ»§id²éÖØ
+			for(j=0;j<i && flag;j++)       //ç”¨æˆ·idæŸ¥é‡
 			{
 				if((strcmp(user[j].id,uid))==0)
 				{
-					printf("¸ÃÓÃ»§ÒÑ´æÔÚ,ÇëÖØĞÂÊäÈë£º");
+					printf("è¯¥ç”¨æˆ·å·²å­˜åœ¨,è¯·é‡æ–°è¾“å…¥ï¼š");
 					flag=0;
 				}
 			}
 		}while(!flag);
 
-		do                                 //Â¼ÈëµÚÒ»Á¾³µ
+		do                                 //å½•å…¥ç¬¬ä¸€è¾†è½¦
 		{
 			flag=1;
-			do                             //ÅĞ¶Ï³µÅÆÊÇ·ñºÏÀí:²»Îª0£»×ÖÄ¸ÓëÊı×Ö×éºÏ
+			do                             //åˆ¤æ–­è½¦ç‰Œæ˜¯å¦åˆç†:ä¸ä¸º0ï¼›å­—æ¯ä¸æ•°å­—ç»„åˆ
 			{
 				flag=1;
-				printf("ÇëÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄ³µÅÆºÅ£º");
+				printf("è¯·è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„è½¦ç‰Œå·ï¼š");
 				scanf("%s",&cid1);	
 				if((strcmp(cid1,"0"))==0)
 				{
-					printf("ÓÃ»§ÖÁÉÙÓĞÒ»Á¾³µ!");
+					printf("ç”¨æˆ·è‡³å°‘æœ‰ä¸€è¾†è½¦!");
 					flag=0;
 				};
 				for(k=0;cid1[k]!='\0' && flag;k++)
@@ -239,23 +239,23 @@ void creat()               //´´½¨ĞÂĞÅÏ¢Êı¾İ
 						flag=0;
 				}
 			}while(!flag);
-			for(j=0;j<i && flag;j++)       //³µÅÆ²éÖØ
+			for(j=0;j<i && flag;j++)       //è½¦ç‰ŒæŸ¥é‡
 			{
 				if((strcmp(user[j].carid1,cid1))==0 || (strcmp(user[j].carid2,cid1))==0)
 				{
-					printf("¸Ã³µÒÑ´æÔÚ£¡");
+					printf("è¯¥è½¦å·²å­˜åœ¨ï¼");
 			        flag=0;
 				}
 			}
 		}while(!flag);
 
-		do                                 //Â¼ÈëµÚ¶şÁ¾³µ,²Ù×÷Í¬Ò»
+		do                                 //å½•å…¥ç¬¬äºŒè¾†è½¦,æ“ä½œåŒä¸€
 		{
 			flag=1;
 			do 
 			{
 				flag=1;
-				printf("ÈôÓĞµÚ¶şÁ¾³µ£¬ÇëÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄ³µÅÆºÅ,ÈôÃ»ÓĞÇëÊäÈë0£º");
+				printf("è‹¥æœ‰ç¬¬äºŒè¾†è½¦ï¼Œè¯·è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„è½¦ç‰Œå·,è‹¥æ²¡æœ‰è¯·è¾“å…¥0ï¼š");
 				scanf("%s",&cid2);
 				for(k=0;cid2[k]!='\0' && flag;k++)
 					if(isalnum(cid2[k])==0)
@@ -263,7 +263,7 @@ void creat()               //´´½¨ĞÂĞÅÏ¢Êı¾İ
 
 				if(strcmp(cid1,cid2)==0)
 				{
-					printf("¸Ã³µÅÆºÅÒÑ¾­ÊäÈë¹ıÁË£¡ÇëÖØĞÂÊäÈë£º ");
+					printf("è¯¥è½¦ç‰Œå·å·²ç»è¾“å…¥è¿‡äº†ï¼è¯·é‡æ–°è¾“å…¥ï¼š ");
 					flag=0;
 				};
 			}while(!flag);
@@ -272,21 +272,21 @@ void creat()               //´´½¨ĞÂĞÅÏ¢Êı¾İ
 				for(j=0;j<i;j++)
 					if((strcmp(user[j].carid2,cid2))==0 || (strcmp(user[j].carid1,cid2))==0)
 					{
-						printf("¸Ã³µÒÑ´æÔÚ!");
+						printf("è¯¥è½¦å·²å­˜åœ¨!");
 						flag=0;
 						break;
 					}
 		}while(!flag);
 
-		if(flag)                          //Â¼ÈëÓĞĞ§ÆÚ²¢Ğ´ÈëÎÄ¼ş
+		if(flag)                          //å½•å…¥æœ‰æ•ˆæœŸå¹¶å†™å…¥æ–‡ä»¶
 		{
 			strcpy(user[i].id,uid);
 			strcpy(user[i].carid1,cid1);
 			strcpy(user[i].carid2,cid2);
 
-			do                            //ÓĞĞ§ÆÚÂ¼Èë
+			do                            //æœ‰æ•ˆæœŸå½•å…¥
 			{
-				printf("¿¨ÀàĞÍ(year/time):");
+				printf("å¡ç±»å‹(year/time):");
 				scanf("%s",tcard);
 
 				if((strcmp(tcard,"year"))==0)
@@ -294,7 +294,7 @@ void creat()               //´´½¨ĞÂĞÅÏ¢Êı¾İ
 					do  
 					{
 						flag=1;
-						printf("ÇëÊäÈëÓĞĞ§Ê¹ÓÃÆÚ:");
+						printf("è¯·è¾“å…¥æœ‰æ•ˆä½¿ç”¨æœŸ:");
 						scanf("%s",&va);
 						if(strlen(va)!=6)
 							flag=0;
@@ -303,7 +303,7 @@ void creat()               //´´½¨ĞÂĞÅÏ¢Êı¾İ
 								flag=0;
 						if(flag)
 							v=atol(va);
-						if(v<=time)        //ÓĞĞ§ÆÚÓë½ñÈÕÊ±¼ä¶Ô±È
+						if(v<=time)        //æœ‰æ•ˆæœŸä¸ä»Šæ—¥æ—¶é—´å¯¹æ¯”
 							flag=0;
 					}while(!flag);
 					user[i].valid=v;
@@ -315,9 +315,9 @@ void creat()               //´´½¨ĞÂĞÅÏ¢Êı¾İ
 					do
 					{
 						flag=1;
-						printf("ÇëÊäÈëÓĞĞ§´ÎÊı(Ò»´ÎĞÔÊäÈë×î´óÊ¹ÓÃ´ÎÊıÎª30):");
+						printf("è¯·è¾“å…¥æœ‰æ•ˆæ¬¡æ•°(ä¸€æ¬¡æ€§è¾“å…¥æœ€å¤§ä½¿ç”¨æ¬¡æ•°ä¸º30):");
 						scanf("%s",&va);
-						for(k=0;va[k]!='\0' && flag;k++)   //ÏÈÅĞ¶ÏÊäÈëÊÇ·ñÎªÊı×Ö
+						for(k=0;va[k]!='\0' && flag;k++)   //å…ˆåˆ¤æ–­è¾“å…¥æ˜¯å¦ä¸ºæ•°å­—
 							if(isdigit(va[k])==0)
 								flag=0;
 						
@@ -332,10 +332,10 @@ void creat()               //´´½¨ĞÂĞÅÏ¢Êı¾İ
 				}
 			}while(flag);
 
-			strcpy(user[i].car1in,"³µÁ¾Î´½øÈë");
-			strcpy(user[i].car2in,"³µÁ¾Î´½øÈë");
+			strcpy(user[i].car1in,"è½¦è¾†æœªè¿›å…¥");
+			strcpy(user[i].car2in,"è½¦è¾†æœªè¿›å…¥");
 			if((strcmp(user[i].carid2,"0"))==0)
-				strcpy(user[i].car2in,"ÎŞ³µÁ¾");
+				strcpy(user[i].car2in,"æ— è½¦è¾†");
 			printf("\n");
 		};
 	};
@@ -343,20 +343,20 @@ void creat()               //´´½¨ĞÂĞÅÏ¢Êı¾İ
 	save(m);
 };
 
-void add()    //Ìí¼ÓĞÅÏ¢
-{ //addº¯ÊıµÄËùÓĞÌí¼Ó£¬ÑéÖ¤£¬Èİ´í¹¦ÄÜ¶¼ÓëcreatÏàÍ¬
+void add()    //æ·»åŠ ä¿¡æ¯
+{ //addå‡½æ•°çš„æ‰€æœ‰æ·»åŠ ï¼ŒéªŒè¯ï¼Œå®¹é”™åŠŸèƒ½éƒ½ä¸creatç›¸åŒ
 	FILE* fp;
 	int n,i,j,flag,k,count=0;
 	int m=load();
 	char uid[7],ucid1[7],ucid2[7],t[7],va[7],tcard[5];
 	long time,v;
 
-	if (isFull()){printf("ÓÃ»§ÒÑÂú£¬²»ÄÜÌí¼Ó£¡");return;} // ÅĞ¶ÏÊÇ·ñ´ïµ½ÈİÁ¿ÉÏÏŞ
+	if (isFull()){printf("ç”¨æˆ·å·²æ»¡ï¼Œä¸èƒ½æ·»åŠ ï¼");return;} // åˆ¤æ–­æ˜¯å¦è¾¾åˆ°å®¹é‡ä¸Šé™
 
-	do                         //ÈÕÆÚÊäÈë
+	do                         //æ—¥æœŸè¾“å…¥
 	{
 		flag=1;
-		printf("ÇëÊäÈë½ñÈÕÈÕÆÚ(Àı190212): ");
+		printf("è¯·è¾“å…¥ä»Šæ—¥æ—¥æœŸ(ä¾‹190212): ");
 		scanf("%s",&t);
 		if(strlen(t)!=6)
 			flag=0;
@@ -368,17 +368,17 @@ void add()    //Ìí¼ÓĞÅÏ¢
 
 	fp=fopen("car.txt","a");
 	do{
-		printf("ÏÖÔÚÒÑÓĞ%d¸öÓÃ»§£¬×î¶à»¹¿ÉÌí¼Ó%d¸öÓÃ»§£¬ÒªÌí¼Ó¼¸¸ö£¿",m,1000-m);
+		printf("ç°åœ¨å·²æœ‰%dä¸ªç”¨æˆ·ï¼Œæœ€å¤šè¿˜å¯æ·»åŠ %dä¸ªç”¨æˆ·ï¼Œè¦æ·»åŠ å‡ ä¸ªï¼Ÿ",m,1000-m);
 		scanf("%d",&n);
 	}while(n+m>1000);
 	for(i=m;i<(m+n);i++)
 	{
-		do											//Â¼ÈëÓÃ»§id²¢¼ì²éÊÇ·ñºÏÀí
+		do											//å½•å…¥ç”¨æˆ·idå¹¶æ£€æŸ¥æ˜¯å¦åˆç†
 		{
 			do
 			{
 				flag=1;
-				printf("ÇëÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄÓÃ»§ID£º");
+				printf("è¯·è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„ç”¨æˆ·IDï¼š");
 				scanf("%s",&uid);
 				if(strlen(uid)!=6)
 					flag=0;
@@ -390,24 +390,24 @@ void add()    //Ìí¼ÓĞÅÏ¢
 			{
 				if((strcmp(user[j].id,uid))==0)
 				{
-					printf("¸ÃÓÃ»§ÒÑ´æÔÚ!");
+					printf("è¯¥ç”¨æˆ·å·²å­˜åœ¨!");
 			        flag=0;
 				}
 			}
 		}while(!flag);
 
-		do									// Â¼ÈëµÚÒ»Á¾³µ
+		do									// å½•å…¥ç¬¬ä¸€è¾†è½¦
 		{
 			flag=1;
 			do
 			{
 				flag=1;
-				printf("ÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄ³µÅÆºÅ£º");
+				printf("è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„è½¦ç‰Œå·ï¼š");
 				scanf("%s",&ucid1);	
 				if(strcmp(ucid1,"0")==0)
 				{
 					flag=0;
-					printf("ÓÃ»§ÖÁÉÙÓĞÒ»Á¾³µ!");
+					printf("ç”¨æˆ·è‡³å°‘æœ‰ä¸€è¾†è½¦!");
 				}
 				for(k=0;ucid1[k]!='\0' && flag;k++)
 					if(isalnum(ucid1[k])==0)
@@ -418,19 +418,19 @@ void add()    //Ìí¼ÓĞÅÏ¢
 			{
 				if((strcmp(user[j].carid1,ucid1))==0 || (strcmp(user[j].carid2,ucid1))==0)
 				{
-					printf("¸Ã³µÒÑ´æÔÚ!");
+					printf("è¯¥è½¦å·²å­˜åœ¨!");
 			        flag=0;
 				}
 			}
 		}while(!flag);
 
-		do                                  //Â¼ÈëµÚ¶şÁ¾³µ
+		do                                  //å½•å…¥ç¬¬äºŒè¾†è½¦
 		{
 			flag=1;
 			do
 			{
 				flag=1;
-				printf("ÈôÓĞµÚ¶şÁ¾³µ£¬ÇëÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄ³µÅÆºÅ,ÈôÃ»ÓĞÇëÊäÈë0£º");
+				printf("è‹¥æœ‰ç¬¬äºŒè¾†è½¦ï¼Œè¯·è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„è½¦ç‰Œå·,è‹¥æ²¡æœ‰è¯·è¾“å…¥0ï¼š");
 				scanf("%s",&ucid2);	
 				for(k=0;ucid2[k]!='\0' && flag;k++)
 					if(isalnum(ucid2[k])==0)
@@ -438,7 +438,7 @@ void add()    //Ìí¼ÓĞÅÏ¢
 			
 				if(strcmp(ucid1,ucid2)==0)
 				{
-					printf("¸Ã³µÅÆºÅ¸Õ²ÅÊäÈë¹ıÁË! ");
+					printf("è¯¥è½¦ç‰Œå·åˆšæ‰è¾“å…¥è¿‡äº†! ");
 					flag=0;
 				};
 			}while(!flag);
@@ -448,7 +448,7 @@ void add()    //Ìí¼ÓĞÅÏ¢
 				{
 					if((strcmp(user[j].carid2,ucid2))==0 || (strcmp(user[j].carid1,ucid2))==0)
 					{
-						printf("¸Ã³µÒÑ´æÔÚ£¡");
+						printf("è¯¥è½¦å·²å­˜åœ¨ï¼");
 						flag=0;
 						break;
 					}
@@ -462,15 +462,15 @@ void add()    //Ìí¼ÓĞÅÏ¢
 			strcpy(user[i].carid2,ucid2);
 			do
 			{
-				printf("¿¨ÀàĞÍ(year/time):");    //ÊäÈë¿¨ÀàĞÍ
+				printf("å¡ç±»å‹(year/time):");    //è¾“å…¥å¡ç±»å‹
 				scanf("%s",tcard);
 
-				if((strcmp(tcard,"year"))==0)  //Äê¿¨ÊäÈëÓĞĞ§ÆÚ
+				if((strcmp(tcard,"year"))==0)  //å¹´å¡è¾“å…¥æœ‰æ•ˆæœŸ
 				{
 					do  
 					{
 						flag=1;
-						printf("ÇëÊäÈëÓĞĞ§Ê¹ÓÃÆÚ:");
+						printf("è¯·è¾“å…¥æœ‰æ•ˆä½¿ç”¨æœŸ:");
 						scanf("%s",&va);
 						if(strlen(va)!=6)
 							flag=0;
@@ -479,7 +479,7 @@ void add()    //Ìí¼ÓĞÅÏ¢
 								flag=0;
 						if(flag)
 							v=atol(va);
-						if(v<=time)        //ÓĞĞ§ÆÚÓë½ñÈÕÊ±¼ä¶Ô±È
+						if(v<=time)        //æœ‰æ•ˆæœŸä¸ä»Šæ—¥æ—¶é—´å¯¹æ¯”
 							flag=0;
 					}while(!flag);
 					user[i].valid=v;
@@ -488,10 +488,10 @@ void add()    //Ìí¼ÓĞÅÏ¢
 				}
 				else if((strcmp(tcard,"time"))==0)
 				{
-					do  //´Î¿¨ÊäÈëÓĞĞ§´ÎÊı
+					do  //æ¬¡å¡è¾“å…¥æœ‰æ•ˆæ¬¡æ•°
 					{
 						flag=1;
-						printf("ÇëÊäÈëÓĞĞ§´ÎÊı(Ò»´ÎĞÔÊäÈë×î´óÊ¹ÓÃ´ÎÊıÎª30):");
+						printf("è¯·è¾“å…¥æœ‰æ•ˆæ¬¡æ•°(ä¸€æ¬¡æ€§è¾“å…¥æœ€å¤§ä½¿ç”¨æ¬¡æ•°ä¸º30):");
 						scanf("%s",&va);
 						for(k=0;va[k]!='\0' && flag;k++)
 							if(isdigit(va[k])==0)
@@ -507,29 +507,29 @@ void add()    //Ìí¼ÓĞÅÏ¢
 				}
 			}while(flag);
 
-			strcpy(user[i].car1in,"³µÁ¾Î´½øÈë");
-			strcpy(user[i].car2in,"³µÁ¾Î´½øÈë");
+			strcpy(user[i].car1in,"è½¦è¾†æœªè¿›å…¥");
+			strcpy(user[i].car2in,"è½¦è¾†æœªè¿›å…¥");
 			if((strcmp(user[i].carid2,"0"))==0)
-				strcpy(user[i].car2in,"ÎŞ³µÁ¾");
+				strcpy(user[i].car2in,"æ— è½¦è¾†");
 			printf("\n");
 		};
 		count+=1;
 	};
 	printf("OK!\n");
 	m=m+count;
-	save(m);   //±£´æ
+	save(m);   //ä¿å­˜
 	fclose(fp);
 };
 
-void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
+void modify()  //ä¿®æ”¹ä¿¡æ¯å‡½æ•°
 { 
-	int q,f,loc=-1,i,k,j,ss,x; //loc´ú±íÓÃ»§ĞòºÅ
+	int q,f,loc=-1,i,k,j,ss,x; //locä»£è¡¨ç”¨æˆ·åºå·
 	int m=load();
 	char id[6],cid[6];
 	do
 	{
 		f=1;
-		printf("°´ÓÃ»§idĞŞ¸ÄÇëÑ¡Ôñ1£¬°´³µÅÆĞŞ¸ÄÇëÑ¡Ôñ2,·ÅÆúĞŞ¸ÄÑ¡Ôñ3£º");
+		printf("æŒ‰ç”¨æˆ·idä¿®æ”¹è¯·é€‰æ‹©1ï¼ŒæŒ‰è½¦ç‰Œä¿®æ”¹è¯·é€‰æ‹©2,æ”¾å¼ƒä¿®æ”¹é€‰æ‹©3ï¼š");
 		scanf("%d",&q);
 		if(q>=1&&q<=3)
 		{
@@ -539,25 +539,25 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 		else
 		{
 			f=0;
-			printf("ÎŞĞ§µÄÑ¡Ôñ!\n");
+			printf("æ— æ•ˆçš„é€‰æ‹©!\n");
 		}
 	}while(!f); 
 
 	switch(q)
 	{
 	case 1:
-		printf("ÇëÊäÈëÒªĞŞ¸ÄµÄÓÃ»§id:");
+		printf("è¯·è¾“å…¥è¦ä¿®æ”¹çš„ç”¨æˆ·id:");
 		scanf("%s",id);
 		for(i=0;i<m;i++)
 		{
-			if(strcmp(user[i].id,id)==0)     // ÏÈ¼ì²éÊÇ·ñ´æÔÚ¸ÃÓÃ»§id
+			if(strcmp(user[i].id,id)==0)     // å…ˆæ£€æŸ¥æ˜¯å¦å­˜åœ¨è¯¥ç”¨æˆ·id
 			{
 				loc=i;
 			}
 		}
 		break;
 	case 2:
-		printf("ÇëÊäÈëÒªĞŞ¸ÄĞÅÏ¢µÄÓÃ»§µÄ³µÅÆºÅ:");
+		printf("è¯·è¾“å…¥è¦ä¿®æ”¹ä¿¡æ¯çš„ç”¨æˆ·çš„è½¦ç‰Œå·:");
 		scanf("%s",&cid);
 		for(i=0;i<m;i++)
 		{
@@ -575,26 +575,26 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 	long v=0,td;
 
 	if(loc==-1){
-		printf("¸ÃÓÃ»§²»´æÔÚ£¡");
+		printf("è¯¥ç”¨æˆ·ä¸å­˜åœ¨ï¼");
 	}
-	else{  // Êä³ö¸ÃÓÃ»§ĞÅÏ¢£¬¾ö¶¨ÊÇ·ñÒªĞŞ¸Ä
+	else{  // è¾“å‡ºè¯¥ç”¨æˆ·ä¿¡æ¯ï¼Œå†³å®šæ˜¯å¦è¦ä¿®æ”¹
 		int n;
-		printf("¸ÃÓÃ»§ĞÅÏ¢Îª£º\n");
+		printf("è¯¥ç”¨æˆ·ä¿¡æ¯ä¸ºï¼š\n");
 		printf("\t%s,\t%s,\t%d,\t%s,\t%s,\t%s,\t%s\n",user[loc].id,user[loc].card,user[loc].valid,user[loc].carid1,user[loc].carid2,user[loc].car1in,user[loc].car2in);
-		printf("È·¶¨ĞŞ¸Ä¸ÃÓÃ»§ÇëÑ¡Ôñ1£¬·ÅÆúĞŞ¸ÄÇëÑ¡Ôñ0£º");
+		printf("ç¡®å®šä¿®æ”¹è¯¥ç”¨æˆ·è¯·é€‰æ‹©1ï¼Œæ”¾å¼ƒä¿®æ”¹è¯·é€‰æ‹©0ï¼š");
 		scanf("%d",&n);
 		if(n==1)
 		{
-			printf("\n1.id 2.¿¨ÀàĞÍ 3.ÓĞĞ§ÈÕÆÚ/ÓĞĞ§Ê±¼ä 4.³µÅÆºÅ\n");
+			printf("\n1.id 2.å¡ç±»å‹ 3.æœ‰æ•ˆæ—¥æœŸ/æœ‰æ•ˆæ—¶é—´ 4.è½¦ç‰Œå·\n");
 			do
 			{
 				flag=1;
-				printf("ÇëÊäÈëÄúÒªĞŞ¸ÄµÄĞòºÅ£º");
+				printf("è¯·è¾“å…¥æ‚¨è¦ä¿®æ”¹çš„åºå·ï¼š");
 				scanf("%d",&c);
 				if(c>4 || c<1)
 				{
 					flag=0;
-					printf("ÎŞĞ§µÄÑ¡Ôñ£¬ÇëÖØĞÂÑ¡Ôñ£º");
+					printf("æ— æ•ˆçš„é€‰æ‹©ï¼Œè¯·é‡æ–°é€‰æ‹©ï¼š");
 				}
 			}while(!flag);
 		}
@@ -612,7 +612,7 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 				flag=1;
 				do
 				{
-					printf("ÇëÊäÈëÓÉÊı×ÖÓë×ÖÄ¸×é³ÉµÄĞŞ¸ÄºóµÄÓÃ»§ID£º");
+					printf("è¯·è¾“å…¥ç”±æ•°å­—ä¸å­—æ¯ç»„æˆçš„ä¿®æ”¹åçš„ç”¨æˆ·IDï¼š");
 					scanf("%s",&id);
 					flag=1;
 					if(strlen(id)!=6){flag=0;}
@@ -620,11 +620,11 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 						if(isalnum(id[k])==0)
 							flag=0;
 				}while(!flag);
-				for(j=0;j<m;j++)  // ÓÃ»§id²éÖØ
+				for(j=0;j<m;j++)  // ç”¨æˆ·idæŸ¥é‡
 				{
 					if((strcmp(user[j].id,id))==0) 
 					{
-						printf("¸ÃidÒÑ´æÔÚ,ÇëÖØĞÂÊäÈë£º");
+						printf("è¯¥idå·²å­˜åœ¨,è¯·é‡æ–°è¾“å…¥ï¼š");
 						flag=0;
 						break;
 					}
@@ -634,7 +634,7 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 			break;
 
 		case 2:
-			printf("ÇëÊäÈëĞŞ¸ÄºóµÄ¿¨ÀàĞÍ(year/time)£º");
+			printf("è¯·è¾“å…¥ä¿®æ”¹åçš„å¡ç±»å‹(year/time)ï¼š");
 			scanf("%s",card);	
 			if((strcmp(card,"time"))==0)
 			{
@@ -642,9 +642,9 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 				do
 				{
 					flag=1;
-					printf("ÇëÊäÈë¸Ã¿¨ÓĞĞ§´ÎÊı£º");
+					printf("è¯·è¾“å…¥è¯¥å¡æœ‰æ•ˆæ¬¡æ•°ï¼š");
 					scanf("%s",&va);
-					for(k=0;va[k]!='\0' && flag;k++) //ÅĞ¶ÏÊäÈëÊÇ·ñÎªÊı×Ö£¬²¢ÇÒ´óÓÚ0£¬Ğ¡ÓÚ30
+					for(k=0;va[k]!='\0' && flag;k++) //åˆ¤æ–­è¾“å…¥æ˜¯å¦ä¸ºæ•°å­—ï¼Œå¹¶ä¸”å¤§äº0ï¼Œå°äº30
 						if(isdigit(va[k])==0)
 							flag=0;
 					if(flag)
@@ -660,9 +660,9 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 				do
 				{
 					flag=1;
-					printf("ÇëÊäÈë½ñÈÕÈÕÆÚ(Àı190212): ");
+					printf("è¯·è¾“å…¥ä»Šæ—¥æ—¥æœŸ(ä¾‹190212): ");
 					scanf("%s",&t);
-					if(strlen(t)!=6)   // ÅĞ¶ÏÈÕÆÚÊÇ·ñÎª6Î»£¬²¢ÇÒÊÇÊı×Ö
+					if(strlen(t)!=6)   // åˆ¤æ–­æ—¥æœŸæ˜¯å¦ä¸º6ä½ï¼Œå¹¶ä¸”æ˜¯æ•°å­—
 						flag=0;
 					for(k=0;t[k]!='\0' && flag;k++)
 						if(isdigit(t[k])==0)
@@ -672,11 +672,11 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 				do
 				{
 					flag=1;
-					printf("ÇëÊäÈëÓĞĞ§Ê¹ÓÃÆÚ:");
+					printf("è¯·è¾“å…¥æœ‰æ•ˆä½¿ç”¨æœŸ:");
 					scanf("%s",&va);
 					if(strlen(va)!=6)
 						flag=0;
-					for(k=0;va[k]!='\0' && flag;k++)  // ÓĞĞ§ÆÚ±ØĞë´óÓÚ½ñÈÕÈÕÆÚ
+					for(k=0;va[k]!='\0' && flag;k++)  // æœ‰æ•ˆæœŸå¿…é¡»å¤§äºä»Šæ—¥æ—¥æœŸ
 						if(isdigit(va[k])==0)
 							flag=0;
 					if(flag)
@@ -691,10 +691,10 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 		case 3:
 			if((strcmp(user[loc].card,"time"))==0)
 			{
-				do   //ĞŞ¸ÄÓĞĞ§´ÎÊı
+				do   //ä¿®æ”¹æœ‰æ•ˆæ¬¡æ•°
 				{
 					flag=1;
-					printf("ÇëÊäÈë¸Ã¿¨ÓĞĞ§´ÎÊı£º");
+					printf("è¯·è¾“å…¥è¯¥å¡æœ‰æ•ˆæ¬¡æ•°ï¼š");
 					scanf("%s",&va);
 					for(k=0;va[k]!='\0' && flag;k++) 
 						if(isdigit(va[k])==0)
@@ -708,10 +708,10 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 			}
 			else if((strcmp(user[loc].card,"year"))==0)
 			{
-				do   //ĞŞ¸ÄÓĞĞ§ÈÕÆÚ
+				do   //ä¿®æ”¹æœ‰æ•ˆæ—¥æœŸ
 				{
 					flag=1;
-					printf("ÇëÊäÈë½ñÈÕÈÕÆÚ(Àı190212): ");
+					printf("è¯·è¾“å…¥ä»Šæ—¥æ—¥æœŸ(ä¾‹190212): ");
 					scanf("%s",&t);
 					if(strlen(t)!=6)
 						flag=0;
@@ -723,7 +723,7 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 				do
 				{
 					flag=1;
-					printf("ÇëÊäÈëÓĞĞ§Ê¹ÓÃÆÚ:");
+					printf("è¯·è¾“å…¥æœ‰æ•ˆä½¿ç”¨æœŸ:");
 					scanf("%s",&va);
 					if(strlen(va)!=6)
 						flag=0;
@@ -740,30 +740,30 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 			break;
 
 		case 4:
-			if((strcmp(user[loc].carid1,"0")!=0) && (strcmp(user[loc].carid2 ,"0")!=0)) // µ±ÓÃ»§ÓĞ2Á¾³µ
+			if((strcmp(user[loc].carid1,"0")!=0) && (strcmp(user[loc].carid2 ,"0")!=0)) // å½“ç”¨æˆ·æœ‰2è¾†è½¦
 			{
-				printf("¸ÃÓÃ»§ÓĞ2Á¾³µ£¬ĞŞ¸Ä³µÁ¾1Çë°´1£¬ĞŞ¸Ä³µÁ¾2Çë°´2£¬¶¼ÒªĞŞ¸ÄÇë°´3£¬·ÅÆúĞŞ¸ÄÇë°´4£º");
+				printf("è¯¥ç”¨æˆ·æœ‰2è¾†è½¦ï¼Œä¿®æ”¹è½¦è¾†1è¯·æŒ‰1ï¼Œä¿®æ”¹è½¦è¾†2è¯·æŒ‰2ï¼Œéƒ½è¦ä¿®æ”¹è¯·æŒ‰3ï¼Œæ”¾å¼ƒä¿®æ”¹è¯·æŒ‰4ï¼š");
 				scanf("%d",&ss);
-				if(ss==1)       //ĞŞ¸Ä³µ1
+				if(ss==1)       //ä¿®æ”¹è½¦1
 				{
 					do
 					{
 						do
 						{
 							flag=1;
-							printf("ÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄĞŞ¸ÄºóµÄ³µÅÆºÅ£º");
+							printf("è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„ä¿®æ”¹åçš„è½¦ç‰Œå·ï¼š");
 							scanf("%s",&c1id);	
-							for(k=0;c1id[k]!='\0' && flag;k++)   // ÅĞ¶Ï³µÅÆºÅÊÇ·ñºÏÀí
+							for(k=0;c1id[k]!='\0' && flag;k++)   // åˆ¤æ–­è½¦ç‰Œå·æ˜¯å¦åˆç†
 								if(isalnum(c1id[k])==0)
 									flag=0;
 						}while(!flag);
-						if(strcmp(c1id,"0")!=0)   // ÑéÖ¤³µÅÆºÅÊÇ·ñ´æÔÚ
+						if(strcmp(c1id,"0")!=0)   // éªŒè¯è½¦ç‰Œå·æ˜¯å¦å­˜åœ¨
 						{
 							for(j=0;j<m;j++)
 							{
 								if((strcmp(user[j].carid1,c1id)==0) || (strcmp(user[j].carid2,c1id)==0))
 								{
-									printf("¸Ã³µÅÆºÅÒÑ´æÔÚ£¬");
+									printf("è¯¥è½¦ç‰Œå·å·²å­˜åœ¨ï¼Œ");
 									flag=0;
 									break;
 								}
@@ -774,20 +774,20 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 					{
 						strcpy(user[loc].carid1,user[loc].carid2);
 					    strcpy(user[loc].carid2,"0");
-						strcpy(user[loc].car2in,"ÎŞ³µÁ¾");
+						strcpy(user[loc].car2in,"æ— è½¦è¾†");
 					}
 					else
 						strcpy(user[loc].carid1,c1id);
-						printf("ĞŞ¸Ä³É¹¦£¡");
+						printf("ä¿®æ”¹æˆåŠŸï¼");
 				}
-				else if(ss==2)  // ĞŞ¸Ä³µ2
+				else if(ss==2)  // ä¿®æ”¹è½¦2
 				{
 					do
 					{
 						do
 						{
 							flag=1;
-							printf("ÇëÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄĞŞ¸Äºó³µÁ¾2µÄ³µÅÆºÅ£º");
+							printf("è¯·è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„ä¿®æ”¹åè½¦è¾†2çš„è½¦ç‰Œå·ï¼š");
 							scanf("%s",c2id);
 							for(k=0;c2id[k]!='\0' && flag;k++)
 								if(isalnum(c2id[k])==0)
@@ -799,7 +799,7 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 							{
 								if((strcmp(user[j].carid1,c2id)==0) || (strcmp(user[j].carid2,c2id)==0))
 								{
-									printf("¸Ã³µÅÆºÅÒÑ´æÔÚ£¬");
+									printf("è¯¥è½¦ç‰Œå·å·²å­˜åœ¨ï¼Œ");
 									flag=0;
 									break;
 								}
@@ -809,19 +809,19 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 					if(strcmp(c2id,"0")==0)
 					{
 						strcpy(user[loc].carid2,c2id);
-						strcpy(user[loc].car2in,"ÎŞ³µÁ¾");
+						strcpy(user[loc].car2in,"æ— è½¦è¾†");
 					};
 					strcpy(user[loc].carid2,c2id);
-					printf("ĞŞ¸Ä³É¹¦£¡");
+					printf("ä¿®æ”¹æˆåŠŸï¼");
 				}
-				else if(ss==3)  //È«ĞŞ¸Ä
+				else if(ss==3)  //å…¨ä¿®æ”¹
 				{
 					do
 					{
 						do
 						{
 							flag=1;
-							printf("ÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄĞŞ¸ÄºóµÄ³µÅÆºÅ1£º");
+							printf("è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„ä¿®æ”¹åçš„è½¦ç‰Œå·1ï¼š");
 							scanf("%s",&c1id);	
 							for(k=0;c1id[k]!='\0' && flag;k++)
 								if(isalnum(c1id[k])==0)
@@ -835,7 +835,7 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 							{
 								if((strcmp(user[j].carid1,c1id)==0) || (strcmp(user[j].carid2,c1id)==0))
 								{
-									printf("¸Ã³µÅÆºÅÒÑ´æÔÚ£¬");
+									printf("è¯¥è½¦ç‰Œå·å·²å­˜åœ¨ï¼Œ");
 									flag=0;
 									break;
 								}
@@ -848,7 +848,7 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 						do
 						{
 							flag=1;
-							printf("ÇëÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄĞŞ¸Äºó³µÁ¾2µÄ³µÅÆºÅ£º");
+							printf("è¯·è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„ä¿®æ”¹åè½¦è¾†2çš„è½¦ç‰Œå·ï¼š");
 							scanf("%s",c2id);
 							for(k=0;c2id[k]!='\0' && flag;k++)
 								if(isalnum(c2id[k])==0)
@@ -861,7 +861,7 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 							{
 								if((strcmp(user[j].carid1,c1id)==0) || (strcmp(user[j].carid2,c1id)==0))
 								{
-									printf("¸Ã³µÅÆºÅÒÑ´æÔÚ£¬");
+									printf("è¯¥è½¦ç‰Œå·å·²å­˜åœ¨ï¼Œ");
 									flag=0;
 									break;
 								}
@@ -871,27 +871,27 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 					if(strcmp(c2id,"0")==0)
 					{
 						strcpy(user[loc].carid2,c2id);
-						strcpy(user[loc].car2in,"ÎŞ³µÁ¾");
+						strcpy(user[loc].car2in,"æ— è½¦è¾†");
 					};
 					strcpy(user[loc].carid2,c2id);
-					printf("ĞŞ¸Ä³É¹¦£¡");
+					printf("ä¿®æ”¹æˆåŠŸï¼");
 				}
 				//else
 				//	break;
 			}
 
-			else if((strcmp(user[loc].carid1 ,"0")!=0) && (strcmp(user[loc].carid2,"0")==0))   // ÈôÓÃ»§½öÓµÓĞÒ»Á¾³µ
+			else if((strcmp(user[loc].carid1 ,"0")!=0) && (strcmp(user[loc].carid2,"0")==0))   // è‹¥ç”¨æˆ·ä»…æ‹¥æœ‰ä¸€è¾†è½¦
 			{
-				printf("¸ÃÓÃ»§ÓĞÒ»Ì¨³µ£¬È·ÈÏĞŞ¸ÄÇë°´1£¬Ìí¼Ó³µÁ¾Çë°´2£¬È¡ÏûĞŞ¸ÄÇë°´0£º ");
+				printf("è¯¥ç”¨æˆ·æœ‰ä¸€å°è½¦ï¼Œç¡®è®¤ä¿®æ”¹è¯·æŒ‰1ï¼Œæ·»åŠ è½¦è¾†è¯·æŒ‰2ï¼Œå–æ¶ˆä¿®æ”¹è¯·æŒ‰0ï¼š ");
 				scanf("%d",&ss);
-				if(ss==1)  // ĞŞ¸Ä³µÁ¾1
+				if(ss==1)  // ä¿®æ”¹è½¦è¾†1
 				{
 					do
 					{
 						do
 						{
 							flag=1;
-							printf("ÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄĞŞ¸ÄºóµÄ³µÅÆºÅ£º");
+							printf("è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„ä¿®æ”¹åçš„è½¦ç‰Œå·ï¼š");
 							scanf("%s",&c1id);	
 							for(k=0;c1id[k]!='\0' && flag;k++)
 								if(isalnum(c1id[k])==0)
@@ -903,23 +903,23 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 						{
 							if((strcmp(user[j].carid1,c1id)==0) || (strcmp(user[j].carid2,c1id)==0))
 							{
-								printf("¸Ã³µÅÆºÅÒÑ´æÔÚ£¬");
+								printf("è¯¥è½¦ç‰Œå·å·²å­˜åœ¨ï¼Œ");
 								flag=0;
 								break;
 							}
 						}
 					}while(!flag);							
 					strcpy(user[loc].carid1,c1id);
-					printf("ĞŞ¸Ä³É¹¦£¡");
+					printf("ä¿®æ”¹æˆåŠŸï¼");
 				}
-				else if(ss==2)  //Ìí¼Ó³µÁ¾2
+				else if(ss==2)  //æ·»åŠ è½¦è¾†2
 				{
 					do
 					{
 						flag=1;
 						do
 						{
-							printf("ÊäÈëÓÉ×ÖÄ¸ÓëÊı×Ö×é³ÉµÄ³µÅÆºÅ£º");
+							printf("è¾“å…¥ç”±å­—æ¯ä¸æ•°å­—ç»„æˆçš„è½¦ç‰Œå·ï¼š");
 							scanf("%s",&c2id);
 							for(k=0;c2id[k]!='\0' && flag;k++)
 								if(isalnum(c2id[k])==0)
@@ -929,27 +929,27 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 							{
 								if((strcmp(user[j].carid1,c2id)==0) || (strcmp(user[j].carid2,c2id)==0))
 								{
-									printf("¸Ã³µÅÆºÅÒÑ´æÔÚ£¬");
+									printf("è¯¥è½¦ç‰Œå·å·²å­˜åœ¨ï¼Œ");
 									flag=0;
 									break;
 								}
 							}
 					}while(!flag);
 					strcpy(user[loc].carid2,c2id);
-					strcpy(user[loc].car2in,"³µÁ¾Î´½øÈë");
-					printf("ĞŞ¸Ä³É¹¦£¡");
+					strcpy(user[loc].car2in,"è½¦è¾†æœªè¿›å…¥");
+					printf("ä¿®æ”¹æˆåŠŸï¼");
 				}
 			}
 			break;
 		}
 		printf("\n");
-		printf("È·¶¨±£´æĞŞ¸ÄµÄĞÅÏ¢£¨1/0£©,ÈçÑ¡0£¬ÔòÖØĞÂĞŞ¸Ä£¿");
+		printf("ç¡®å®šä¿å­˜ä¿®æ”¹çš„ä¿¡æ¯ï¼ˆ1/0ï¼‰,å¦‚é€‰0ï¼Œåˆ™é‡æ–°ä¿®æ”¹ï¼Ÿ");
 		scanf("%d",&flag);
 	}while(!flag);
 
 	save(m);
 	display();
-	printf("\nĞŞ¸Ä½áÊøÇë°´0£¬¼ÌĞøĞŞ¸ÄÇë°´1£º"); //Èç¹û¼ÌĞøĞŞ¸Ä£¬Çå¿Õ×ÀÃæ£¬ÖØĞÂÔËĞĞÒ»´Î
+	printf("\nä¿®æ”¹ç»“æŸè¯·æŒ‰0ï¼Œç»§ç»­ä¿®æ”¹è¯·æŒ‰1ï¼š"); //å¦‚æœç»§ç»­ä¿®æ”¹ï¼Œæ¸…ç©ºæ¡Œé¢ï¼Œé‡æ–°è¿è¡Œä¸€æ¬¡
 	scanf("%d",&x);
 	switch(x)
 	{
@@ -963,21 +963,21 @@ void modify()  //ĞŞ¸ÄĞÅÏ¢º¯Êı
 	}
 }
 
-bool isleap(int year){ // ÅĞ¶ÏÊÇ·ñÎªÈòÄê
+bool isleap(int year){ // åˆ¤æ–­æ˜¯å¦ä¸ºé—°å¹´
 	 return (year%4==0 && year%100!=0 || year%400==0);
 }
 
-//¼ÆËãÍ£³µ·ÑÓÃ
+//è®¡ç®—åœè½¦è´¹ç”¨
 long fee(long Time_in,long Hour_in,long Time_out,long Hour_out)
 {
-	//µ¼Èë½ø³öÊ±¼äºó£¬½«Æä·Ö½âÎªÄê£¬ÔÂ£¬ÈÕ£¬Ê±£¬·Ö
+	//å¯¼å…¥è¿›å‡ºæ—¶é—´åï¼Œå°†å…¶åˆ†è§£ä¸ºå¹´ï¼Œæœˆï¼Œæ—¥ï¼Œæ—¶ï¼Œåˆ†
     int y1,m1,d1,h1,s1;
     int y2,m2,d2,h2,s2;
     int day=0;
     long hour,p;
     y1=Time_in/10000,m1=Time_in%10000/100,d1=Time_in%100,h1=Hour_in/100,s1=Hour_in%100;
     y2=Time_out/10000,m2=Time_out%10000/100,d2=Time_out%100,h2=Hour_out/100,s2=Hour_out%100;
-    while (y1<y2 || m1<m2 || d1<d2){  //¼ÆËã½ø³öÊ±¼äÏà²î¶àÉÙÌì
+    while (y1<y2 || m1<m2 || d1<d2){  //è®¡ç®—è¿›å‡ºæ—¶é—´ç›¸å·®å¤šå°‘å¤©
         d1++;
         if (d1==month[m1][isleap(y1)]+1){
             m1++;
@@ -989,18 +989,18 @@ long fee(long Time_in,long Hour_in,long Time_out,long Hour_out)
         }
         day++;
     };
-    hour=h2-h1;   // ¼ÆËãĞ¡Ê±²î
+    hour=h2-h1;   // è®¡ç®—å°æ—¶å·®
     if(s2-s1>0)
         hour++;
 	hour=hour+24*day;
-    p=5+3*(hour-1);  // ¼ÆËã·ÑÓÃ
+    p=5+3*(hour-1);  // è®¡ç®—è´¹ç”¨
     return p;
 };
 
 void carin(){
 	FILE* fp;
 	int m=load();
-	int i,n,j,k=0,flag,tag,loc=-1,f; //tag´ú±í³µ1»¹ÊÇ³µ2
+	int i,n,j,k=0,flag,tag,loc=-1,f; //tagä»£è¡¨è½¦1è¿˜æ˜¯è½¦2
 	bool ft=true;
 	char car[6],time[12],tim[6];
 	char sto[7];
@@ -1008,7 +1008,7 @@ void carin(){
 	do
 	{
 		flag=1;
-		printf("ÇëÊäÈë³µÅÆºÅ£º");     // È·¶¨³µÅÆºÅ
+		printf("è¯·è¾“å…¥è½¦ç‰Œå·ï¼š");     // ç¡®å®šè½¦ç‰Œå·
 		scanf("%s",car);
 		for(i=0;car[i]!='\0' && flag;i++)
 		{
@@ -1018,7 +1018,7 @@ void carin(){
 	}while(!flag);
 	strcpy(sto,car);
 
-	for(i=0;i<m;i++)										//¼ìË÷¸Ã³µÅÆµÄ³µÖ÷£¬È·¶¨½øÈëµÄ³µÁ¾ÊÇ³µ1»¹ÊÇ³µ2
+	for(i=0;i<m;i++)										//æ£€ç´¢è¯¥è½¦ç‰Œçš„è½¦ä¸»ï¼Œç¡®å®šè¿›å…¥çš„è½¦è¾†æ˜¯è½¦1è¿˜æ˜¯è½¦2
 	{
 		if(strcmp(user[i].carid1,sto)==0)
 		{
@@ -1037,7 +1037,7 @@ void carin(){
 	do
 	{
 		flag=1;
-		printf("ÇëÊäÈëÈë³¡Ê±¼ä(Ê¡ÂÔ':'¾«È·µ½·Ö):");  // ÊäÈë½øÈëÊ±¼ä
+		printf("è¯·è¾“å…¥å…¥åœºæ—¶é—´(çœç•¥':'ç²¾ç¡®åˆ°åˆ†):");  // è¾“å…¥è¿›å…¥æ—¶é—´
 		scanf("%s",time);
 		if(strlen(time)!=12)
 			flag=0;
@@ -1048,7 +1048,7 @@ void carin(){
 		}
 	}while(!flag);
 
-	if(loc!=-1){ //locÎª¸ÃÓÃ»§ÔÚÊı×éÖĞµÄÎ»ÖÃ
+	if(loc!=-1){ //locä¸ºè¯¥ç”¨æˆ·åœ¨æ•°ç»„ä¸­çš„ä½ç½®
 		if(strcmp(user[loc].card,"year")==0)
 		{
 			strncpy(tim,time+2,6);
@@ -1056,27 +1056,27 @@ void carin(){
 			if(v>=user[loc].valid){ft=false;} 
 		};
 
-		if(ft){ // ftÊÇtrue´ú±í»áÔ±Ã»µ½ÆÚ
-			if(tag==1) //tag´ú±íµÈ´ı½øÈëµÄÊÇ³µÖ÷µÄ¼¸ºÅ³µ
+		if(ft){ // ftæ˜¯trueä»£è¡¨ä¼šå‘˜æ²¡åˆ°æœŸ
+			if(tag==1) //tagä»£è¡¨ç­‰å¾…è¿›å…¥çš„æ˜¯è½¦ä¸»çš„å‡ å·è½¦
 			{
 				if(strcmp(user[loc].car2in,"vip")==0)
 					strcpy(user[loc].car1in,time);
-				else if(strcmp(user[loc].car2in,"ÎŞ³µÁ¾")==0 || strcmp(user[loc].car2in,"³µÁ¾Î´½øÈë")==0)
+				else if(strcmp(user[loc].car2in,"æ— è½¦è¾†")==0 || strcmp(user[loc].car2in,"è½¦è¾†æœªè¿›å…¥")==0)
 					strcpy(user[loc].car1in,"vip");
 			}
 			else if(tag==2)
 			{
 				if(strcmp(user[loc].car1in,"vip")==0)
 					strcpy(user[loc].car2in,time);
-				else if(strcmp(user[loc].car1in,"ÎŞ³µÁ¾")==0 || strcmp(user[loc].car1in,"³µÁ¾Î´½øÈë")==0)
+				else if(strcmp(user[loc].car1in,"æ— è½¦è¾†")==0 || strcmp(user[loc].car1in,"è½¦è¾†æœªè¿›å…¥")==0)
 					strcpy(user[loc].car2in,"vip");
 			};
 			save(m);
-			printf("Çë½øÈë£¡");
+			printf("è¯·è¿›å…¥ï¼");
 		}
 		else
 		{
-			for(j=loc;j<m;j++)    //É¾³ı¹ıÆÚÓÃ»§
+			for(j=loc;j<m;j++)    //åˆ é™¤è¿‡æœŸç”¨æˆ·
 			{
 				strcpy(user[j].id,user[j+1].id);
 				user[j].valid=user[j+1].valid;
@@ -1089,29 +1089,29 @@ void carin(){
 			m=m-1;
 			save(m);
 			loc=-1;
-			printf("ÄúµÄÓÃ»§¿¨ÒòÓâÆÚÎ´Ğø·Ñ£¬ÒÑ±»×¢Ïú¡£Çë°ìÀíÁÙÊ±¿¨½øÈë.\n");			
+			printf("æ‚¨çš„ç”¨æˆ·å¡å› é€¾æœŸæœªç»­è´¹ï¼Œå·²è¢«æ³¨é”€ã€‚è¯·åŠç†ä¸´æ—¶å¡è¿›å…¥.\n");			
 		}
 	}
 	if(!isFull() && loc==-1){
-		printf("°ìÀíÁÙÊ±¿¨ÇëÑ¡Ôñ1£¬Àë¿ªÇëÑ¡Ôñ0£º ");
+		printf("åŠç†ä¸´æ—¶å¡è¯·é€‰æ‹©1ï¼Œç¦»å¼€è¯·é€‰æ‹©0ï¼š ");
 		scanf("%d",&n);
 		if(n==1)
-		{  //ÁÙÊ±¿¨Ö»ÉèÖÃ³µÅÆºÅÓë½øÈëÊ±¼ä£¬ÆäÓàÈ«ÎªÄ¬ÈÏÖµ
+		{  //ä¸´æ—¶å¡åªè®¾ç½®è½¦ç‰Œå·ä¸è¿›å…¥æ—¶é—´ï¼Œå…¶ä½™å…¨ä¸ºé»˜è®¤å€¼
 			strcpy(user[m].id,"temp");  
 			strcpy(user[m].card,"temp");
 			strcpy(user[m].carid2,"0");
 			strcpy(user[m].car1in,time);
-			strcpy(user[m].car2in,"ÎŞ³µÁ¾");
+			strcpy(user[m].car2in,"æ— è½¦è¾†");
 			strcpy(user[m].carid1,sto);
 			m=m+1;
 			save(m);
-			printf("\nÌí¼Ó³É¹¦£¡\n");
-			printf("Äú¿ÉÒÔ½øÈë£¡");
+			printf("\næ·»åŠ æˆåŠŸï¼\n");
+			printf("æ‚¨å¯ä»¥è¿›å…¥ï¼");
 		}
 		else
-			printf("ÔÙ¼û£¡");
+			printf("å†è§ï¼");
 	}
-	else if(isFull()){printf("ÓÃ»§ÒÑÂú£¡²»ÄÜ´´½¨ÁÙÊ±¿¨¡£");}
+	else if(isFull()){printf("ç”¨æˆ·å·²æ»¡ï¼ä¸èƒ½åˆ›å»ºä¸´æ—¶å¡ã€‚");}
 };
 
 void carout(){
@@ -1123,7 +1123,7 @@ void carout(){
     do
 	{
         flag=1;
-        printf("ÇëÊäÈë³µÅÆºÅ£º");  // ÊäÈëÀë¿ªµÄ³µÅÆºÅ
+        printf("è¯·è¾“å…¥è½¦ç‰Œå·ï¼š");  // è¾“å…¥ç¦»å¼€çš„è½¦ç‰Œå·
         scanf("%s",car);
         for(i=0;car[i]!='\0' && flag;i++)
         {
@@ -1135,7 +1135,7 @@ void carout(){
 	do
 	{
 		flag=1;
-		printf("ÇëÊäÈë³ö³¡Ê±¼ä(Ê¡ÂÔ':'¾«È·µ½·Ö):");		//¶ÁÈëÕıÈ·Ê±¼ä
+		printf("è¯·è¾“å…¥å‡ºåœºæ—¶é—´(çœç•¥':'ç²¾ç¡®åˆ°åˆ†):");		//è¯»å…¥æ­£ç¡®æ—¶é—´
 		scanf("%s",time);
 		if(strlen(time)!=12)
 			flag=0;
@@ -1146,7 +1146,7 @@ void carout(){
 		}
 	}while(!flag);
 
-	for(i=0;i<m;i++)										//¼ìË÷¸Ã³µÅÆµÄ³µÖ÷£¬²¢È·¶¨ÊÇ³µ1»¹ÊÇ³µ2
+	for(i=0;i<m;i++)										//æ£€ç´¢è¯¥è½¦ç‰Œçš„è½¦ä¸»ï¼Œå¹¶ç¡®å®šæ˜¯è½¦1è¿˜æ˜¯è½¦2
 	{
         if(strcmp(user[i].carid1,car)==0)
         {
@@ -1170,23 +1170,23 @@ void carout(){
 		hoursout=atoi(hourout);
 
 		if(strcmp(user[i].card,"year")==0) 
-		{// Äê¿¨ÓÃ»§£¬Èç¹û³ö³¡Ê±¼äÎ´µ½ÓĞĞ§½ØÖ¹ÆÚ¡£¶ÔÓÚvip×´Ì¬µÄ³µ£¬Ö±½ÓÉèÖÃÎª³µÁ¾Î´½øÈë£»			
-			if(tag==1)   // tag´ú±íµÈ´ıÀë¿ªµÄÊÇ³µÖ÷µÄ¼¸ºÅ³µ
+		{// å¹´å¡ç”¨æˆ·ï¼Œå¦‚æœå‡ºåœºæ—¶é—´æœªåˆ°æœ‰æ•ˆæˆªæ­¢æœŸã€‚å¯¹äºvipçŠ¶æ€çš„è½¦ï¼Œç›´æ¥è®¾ç½®ä¸ºè½¦è¾†æœªè¿›å…¥ï¼›			
+			if(tag==1)   // tagä»£è¡¨ç­‰å¾…ç¦»å¼€çš„æ˜¯è½¦ä¸»çš„å‡ å·è½¦
 			{
 				if(strcmp(user[i].car1in,"vip")==0) 
 				{
 					if(vo<user[i].valid)
 					{
-						strcpy(user[i].car1in,"³µÁ¾Î´½øÈë");
-						printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						strcpy(user[i].car1in,"è½¦è¾†æœªè¿›å…¥");
+						printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 					}
 
 					else         
-					{ // Èç¹û³¬¹ı½ØÖ¹ÆÚ£¬ÓÃ³ö³¡ÈÕÆÚµ½½ØÖ¹ÆÚµÄtime²î¼Æ·Ñ£¬Èç¹ûÁíÒ»Á¾³µÎ´½øÈë£¬Ö±½ÓÉ¾³ı¸ÃÓÃ»§£¬·ñÔòÔİÊ±±£Áô
+					{ // å¦‚æœè¶…è¿‡æˆªæ­¢æœŸï¼Œç”¨å‡ºåœºæ—¥æœŸåˆ°æˆªæ­¢æœŸçš„timeå·®è®¡è´¹ï¼Œå¦‚æœå¦ä¸€è¾†è½¦æœªè¿›å…¥ï¼Œç›´æ¥åˆ é™¤è¯¥ç”¨æˆ·ï¼Œå¦åˆ™æš‚æ—¶ä¿ç•™
 
 						pay=fee(user[i].valid,0,vo,hoursout);
-						if(strcmp(user[i].car2in,"ÎŞ³µÁ¾")==0 || strcmp(user[i].car2in,"³µÁ¾Î´½ø³¡")==0)
-						{	for(j=i;j<m;j++)    //É¾³ı¹ıÆÚÓÃ»§
+						if(strcmp(user[i].car2in,"æ— è½¦è¾†")==0 || strcmp(user[i].car2in,"è½¦è¾†æœªè¿›åœº")==0)
+						{	for(j=i;j<m;j++)    //åˆ é™¤è¿‡æœŸç”¨æˆ·
 							{
 								strcpy(user[j].id,user[j+1].id);
 								user[j].valid=user[j+1].valid;
@@ -1197,18 +1197,18 @@ void carout(){
 								strcpy(user[j].car2in,user[j+1].car2in);
 							};
 							m=m-1;
-							printf("ÓÉÓÚÄúµÄÓÃ»§¿¨ÒÑµ½ÆÚ£¬ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+							printf("ç”±äºæ‚¨çš„ç”¨æˆ·å¡å·²åˆ°æœŸï¼Œæ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 						else
 						{	
-							strcpy(user[i].car1in,"³µÁ¾Î´½øÈë");
-							printf("ÓÉÓÚÄúµÄÓÃ»§¿¨ÒÑµ½ÆÚ£¬ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+							strcpy(user[i].car1in,"è½¦è¾†æœªè¿›å…¥");
+							printf("ç”±äºæ‚¨çš„ç”¨æˆ·å¡å·²åˆ°æœŸï¼Œæ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 					};
 				}
-				else if(strcmp(user[i].car1in,"vip")!=0)  // ¶ÔÓÚ·Çvip×´Ì¬µÄÓÃ»§£¬Ö±½ÓÀûÓÃ time²î ¼Æ·Ñ
+				else if(strcmp(user[i].car1in,"vip")!=0)  // å¯¹äºévipçŠ¶æ€çš„ç”¨æˆ·ï¼Œç›´æ¥åˆ©ç”¨ timeå·® è®¡è´¹
 				{
 					strncpy(timi,user[i].car1in+2,6);
 					strncpy(hourin,user[i].car1in+8,4);
@@ -1218,14 +1218,14 @@ void carout(){
 
 					if(vo<user[i].valid)
 					{
-						strcpy(user[i].car1in,"³µÁ¾Î´½øÈë");
-						printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-						printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						strcpy(user[i].car1in,"è½¦è¾†æœªè¿›å…¥");
+						printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+						printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 					}
 					else   
 					{
-						if(strcmp(user[i].car2in,"ÎŞ³µÁ¾")==0 || strcmp(user[i].car2in,"³µÁ¾Î´½ø³¡")==0)
-						{	for(j=i;j<m;j++)    //É¾³ı¹ıÆÚÓÃ»§
+						if(strcmp(user[i].car2in,"æ— è½¦è¾†")==0 || strcmp(user[i].car2in,"è½¦è¾†æœªè¿›åœº")==0)
+						{	for(j=i;j<m;j++)    //åˆ é™¤è¿‡æœŸç”¨æˆ·
 							{
 								strcpy(user[j].id,user[j+1].id);
 								user[j].valid=user[j+1].valid;
@@ -1236,13 +1236,13 @@ void carout(){
 								strcpy(user[j].car2in,user[j+1].car2in);
 							};
 							m=m-1;
-							printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+							printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 						else
-						{	strcpy(user[i].car1in,"³µÁ¾Î´½øÈë");
-							printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						{	strcpy(user[i].car1in,"è½¦è¾†æœªè¿›å…¥");
+							printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 					}
 				}
@@ -1254,15 +1254,15 @@ void carout(){
 				{
 					if(vo<user[i].valid)
 					{
-						strcpy(user[i].car2in,"³µÁ¾Î´½øÈë");
-						printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						strcpy(user[i].car2in,"è½¦è¾†æœªè¿›å…¥");
+						printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 					}
 					else
 					{
 						pay=fee(user[i].valid,0,vo,hoursout);
-						if(strcmp(user[i].car1in,"ÎŞ³µÁ¾")==0 || strcmp(user[i].car1in,"³µÁ¾Î´½ø³¡")==0)
+						if(strcmp(user[i].car1in,"æ— è½¦è¾†")==0 || strcmp(user[i].car1in,"è½¦è¾†æœªè¿›åœº")==0)
 						{	
-							for(j=i;j<m;j++)    //É¾³ı¹ıÆÚÓÃ»§
+							for(j=i;j<m;j++)    //åˆ é™¤è¿‡æœŸç”¨æˆ·
 							{
 								strcpy(user[j].id,user[j+1].id);
 								user[j].valid=user[j+1].valid;
@@ -1273,14 +1273,14 @@ void carout(){
 								strcpy(user[j].car2in,user[j+1].car2in);
 							};
 							m=m-1;
-							printf("ÓÉÓÚÄúµÄÓÃ»§¿¨ÒÑµ½ÆÚ£¬ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+							printf("ç”±äºæ‚¨çš„ç”¨æˆ·å¡å·²åˆ°æœŸï¼Œæ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 						else
 						{
-							strcpy(user[i].car2in,"³µÁ¾Î´½øÈë");
-							printf("ÓÉÓÚÄúµÄÓÃ»§¿¨ÒÑµ½ÆÚ£¬ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+							strcpy(user[i].car2in,"è½¦è¾†æœªè¿›å…¥");
+							printf("ç”±äºæ‚¨çš„ç”¨æˆ·å¡å·²åˆ°æœŸï¼Œæ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 					};
 				}
@@ -1294,15 +1294,15 @@ void carout(){
 
 					if(vo<user[i].valid)
 					{
-						strcpy(user[i].car2in,"³µÁ¾Î´½øÈë");
-						printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-						printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						strcpy(user[i].car2in,"è½¦è¾†æœªè¿›å…¥");
+						printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+						printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 					}
 					else
 					{
-						if(strcmp(user[i].car1in,"ÎŞ³µÁ¾")==0 || strcmp(user[i].car1in,"³µÁ¾Î´½ø³¡")==0)
+						if(strcmp(user[i].car1in,"æ— è½¦è¾†")==0 || strcmp(user[i].car1in,"è½¦è¾†æœªè¿›åœº")==0)
 						{	
-							for(j=i;j<m;j++)    //É¾³ı¹ıÆÚÓÃ»§
+							for(j=i;j<m;j++)    //åˆ é™¤è¿‡æœŸç”¨æˆ·
 							{
 								strcpy(user[j].id,user[j+1].id);
 								user[j].valid=user[j+1].valid;
@@ -1313,20 +1313,20 @@ void carout(){
 								strcpy(user[j].car2in,user[j+1].car2in);
 							};
 							m=m-1;
-							printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+							printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 						else
-						{	strcpy(user[i].car2in,"³µÁ¾Î´½øÈë");
-							printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						{	strcpy(user[i].car2in,"è½¦è¾†æœªè¿›å…¥");
+							printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 					}
 				}
 			}
 		}
 
-		else if(strcmp(user[i].card,"time")==0)  // ´Î¿¨Î´ÓÃÍê£¬²Ù×÷Í¬Äê¿¨
+		else if(strcmp(user[i].card,"time")==0)  // æ¬¡å¡æœªç”¨å®Œï¼Œæ“ä½œåŒå¹´å¡
 		{
 			if(tag==1)
 			{
@@ -1334,9 +1334,9 @@ void carout(){
 				{
 					if(user[i].valid==1)
 					{
-						if(strcmp(user[i].car2in,"ÎŞ³µÁ¾")==0 || strcmp(user[i].car2in,"³µÁ¾Î´½ø³¡")==0)
+						if(strcmp(user[i].car2in,"æ— è½¦è¾†")==0 || strcmp(user[i].car2in,"è½¦è¾†æœªè¿›åœº")==0)
 						{
-							for(j=i;j<m;j++)    //É¾³ı¹ıÆÚÓÃ»§
+							for(j=i;j<m;j++)    //åˆ é™¤è¿‡æœŸç”¨æˆ·
 							{
 								strcpy(user[j].id,user[j+1].id);
 								user[j].valid=user[j+1].valid;
@@ -1347,21 +1347,21 @@ void carout(){
 								strcpy(user[j].car2in,user[j+1].car2in);
 							};
 							m=m-1;
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 						else
 						{
 							user[i].valid=user[i].valid-1;
-							strcpy(user[i].car1in,"³µÁ¾Î´½øÈë");	
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+							strcpy(user[i].car1in,"è½¦è¾†æœªè¿›å…¥");	
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 					}
 
 					else
 					{
 						user[i].valid=user[i].valid-1;
-						strcpy(user[i].car1in,"³µÁ¾Î´½øÈë");
-						printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						strcpy(user[i].car1in,"è½¦è¾†æœªè¿›å…¥");
+						printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 					}
 				}
 
@@ -1374,7 +1374,7 @@ void carout(){
 					pay=fee(vi,hoursin,vo,hoursout);
 					if(user[i].valid==0)
 					{
-						for(j=i;j<m;j++)    //É¾³ı¹ıÆÚÓÃ»§
+						for(j=i;j<m;j++)    //åˆ é™¤è¿‡æœŸç”¨æˆ·
 						{
 							strcpy(user[j].id,user[j+1].id);
 							user[j].valid=user[j+1].valid;
@@ -1385,14 +1385,14 @@ void carout(){
 							strcpy(user[j].car2in,user[j+1].car2in);
 						};
 						m=m-1;
-						printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-						printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+						printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 					}
 					else
 					{
-						strcpy(user[i].car1in,"³µÁ¾Î´½øÈë");
-						printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-						printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						strcpy(user[i].car1in,"è½¦è¾†æœªè¿›å…¥");
+						printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+						printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 					}
 				}
 			}
@@ -1403,9 +1403,9 @@ void carout(){
 				{
 					if(user[i].valid==1)
 					{
-						if(strcmp(user[i].car1in,"ÎŞ³µÁ¾")==0 || strcmp(user[i].car1in,"³µÁ¾Î´½ø³¡")==0)
+						if(strcmp(user[i].car1in,"æ— è½¦è¾†")==0 || strcmp(user[i].car1in,"è½¦è¾†æœªè¿›åœº")==0)
 						{
-							for(j=i;j<m;j++)    //É¾³ı¹ıÆÚÓÃ»§
+							for(j=i;j<m;j++)    //åˆ é™¤è¿‡æœŸç”¨æˆ·
 							{
 								strcpy(user[j].id,user[j+1].id);
 								user[j].valid=user[j+1].valid;
@@ -1416,21 +1416,21 @@ void carout(){
 								strcpy(user[j].car2in,user[j+1].car2in);
 							};
 							m=m-1;
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 						else
 						{
 							user[i].valid=user[i].valid-1;
-							strcpy(user[i].car2in,"³µÁ¾Î´½øÈë");
-							printf("×£ÄúÒ»Â·Ë³·ç£¡");
+							strcpy(user[i].car2in,"è½¦è¾†æœªè¿›å…¥");
+							printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 						}
 					}
 
 					else
 					{
 						user[i].valid=user[i].valid-1;
-						strcpy(user[i].car2in,"³µÁ¾Î´½øÈë");
-						printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						strcpy(user[i].car2in,"è½¦è¾†æœªè¿›å…¥");
+						printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 					}
 				}
 			
@@ -1444,7 +1444,7 @@ void carout(){
 
 					if(user[i].valid==0)
 					{
-						for(j=i;j<m;j++)    //É¾³ı¹ıÆÚÓÃ»§
+						for(j=i;j<m;j++)    //åˆ é™¤è¿‡æœŸç”¨æˆ·
 						{
 							strcpy(user[j].id,user[j+1].id);
 							user[j].valid=user[j+1].valid;
@@ -1455,14 +1455,14 @@ void carout(){
 							strcpy(user[j].car2in,user[j+1].car2in);
 						};
 						m=m-1;
-						printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-						printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+						printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 					}
 					else
 					{
-						strcpy(user[i].car2in,"³µÁ¾Î´½øÈë");
-						printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-						printf("×£ÄúÒ»Â·Ë³·ç£¡");
+						strcpy(user[i].car2in,"è½¦è¾†æœªè¿›å…¥");
+						printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+						printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 					}
 				}
 			}
@@ -1475,7 +1475,7 @@ void carout(){
 			hoursin=atoi(hourin);
 			pay=fee(vi,hoursin,vo,hoursout);
 
-			for(j=i;j<m;j++)    //É¾³ı¹ıÆÚÓÃ»§
+			for(j=i;j<m;j++)    //åˆ é™¤è¿‡æœŸç”¨æˆ·
 			{
 				strcpy(user[j].id,user[j+1].id);
 				user[j].valid=user[j+1].valid;
@@ -1486,13 +1486,13 @@ void carout(){
 				strcpy(user[j].car2in,user[j+1].car2in);
 			};
 			m=m-1;
-			printf("ÄúĞèÒª½ÉÄÉµÄ·ÑÓÃÎª£º%ld\n",pay);
-			printf("×£ÄúÒ»Â·Ë³·ç£¡");
+			printf("æ‚¨éœ€è¦ç¼´çº³çš„è´¹ç”¨ä¸ºï¼š%ld\n",pay);
+			printf("ç¥æ‚¨ä¸€è·¯é¡ºé£ï¼");
 		}
 		save(m);
 	}
 	else
-		printf("Î´²éÕÒµ½¸Ã³µÁ¾£¡");
+		printf("æœªæŸ¥æ‰¾åˆ°è¯¥è½¦è¾†ï¼");
 };
 
 bool cmp_id(USER a,USER b){return strcmp(a.id,b.id)<0;}
@@ -1507,12 +1507,12 @@ void sort(){
 	int i,j,k,s1,s2,flag;
 	do
 	{
-		printf("1.ÓÃ»§ID 2.¿¨ÀàĞÍ 3.ÓĞĞ§ÈÕÆÚ/ÓĞĞ§´ÎÊı 4.³µÅÆºÅ 5.Èë³¡Ê±¼ä 6.·ÅÆúÅÅĞò\n");
-	    printf("ÄúÒª¶ÔÄÇÖÖ×Ö¶ÎÅÅĞò£¿ÇëÊäÈëÆä¶ÔÓ¦µÄ´úºÅ£º");
+		printf("1.ç”¨æˆ·ID 2.å¡ç±»å‹ 3.æœ‰æ•ˆæ—¥æœŸ/æœ‰æ•ˆæ¬¡æ•° 4.è½¦ç‰Œå· 5.å…¥åœºæ—¶é—´ 6.æ”¾å¼ƒæ’åº\n");
+	    printf("æ‚¨è¦å¯¹é‚£ç§å­—æ®µæ’åºï¼Ÿè¯·è¾“å…¥å…¶å¯¹åº”çš„ä»£å·ï¼š");
 	    scanf("%d",&s1);
 	    if(s1<1 || s1>6)
 		{
-			printf("ÊäÈë²»ºÏ·¨£¬ÇëÖØĞÂÊäÈë£º");
+			printf("è¾“å…¥ä¸åˆæ³•ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
 			scanf("%d",&s1);
 			flag=0;
 			break;
@@ -1526,24 +1526,24 @@ void sort(){
 
 	switch(s1)
 	{
-	case 1: // °´idÅÅĞò
+	case 1: // æŒ‰idæ’åº
 		std::sort(user,user+m,cmp_id);
 		break;
-	case 2: //°´¿¨ÀàĞÍÅÅĞò
+	case 2: //æŒ‰å¡ç±»å‹æ’åº
 		std::sort(user,user+m,cmp_card);
 		break;
-	case 3: //°´ÓĞĞ§ÆÚÅÅĞò
+	case 3: //æŒ‰æœ‰æ•ˆæœŸæ’åº
 		std::sort(user,user+m,cmp_v);
 		break;
-	case 4: // °´³µÅÆºÅÅÅĞò
+	case 4: // æŒ‰è½¦ç‰Œå·æ’åº
 		std::sort(user,user+m,cmp_car);
 		break;
-	case 5: // °´Èë³¡Ê±¼äÅÅĞò
+	case 5: // æŒ‰å…¥åœºæ—¶é—´æ’åº
 		std::sort(user,user+m,cmp_in);
 		break;
 	default:return;
 	}
-	printf("½µĞòÅÅÁĞÑ¡Ôñ1£¬ÉıĞòÅÅÁĞÑ¡Ôñ2£º");
+	printf("é™åºæ’åˆ—é€‰æ‹©1ï¼Œå‡åºæ’åˆ—é€‰æ‹©2ï¼š");
 	scanf("%d",&s2);
 	if(s2==1)
 	{
